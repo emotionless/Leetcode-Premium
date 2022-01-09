@@ -21,8 +21,8 @@ public:
                 if (counter[last] == 1) {
                     total++;
                 }
-                answer = max(answer, total);
-            } else if (i == (k-1)) {
+            }
+            if ((i+1) >= k) {
                 answer = max(answer, total);
             }
         }
