@@ -1,3 +1,5 @@
+// solved by Milon
+
 class Solution {
 public:
     vector<int> elementInNums(vector<int>& nums, vector<vector<int>>& queries) {
@@ -8,11 +10,9 @@ public:
             int time = query[0] % tot;
             int ind = query[1];
             int ans = -1;
-            if (time == n) {
-                ans = -1;
-            } else if (time < n) {
+            if (time < n) {
                 ans = (time + ind) < n? nums[time + ind] : -1;
-            } else {
+            } else if (time > n) {
                 ans = (time - n) > ind? nums[ind] : -1;
             }
             res.push_back(ans);
