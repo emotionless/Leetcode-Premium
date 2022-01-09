@@ -8,22 +8,18 @@ public:
         for (auto candy : candies) {
             counter[candy]++;
         }
-        int total = counter.size();
         int answer = 0;
         for (int i = 0; i < n; i++) {
             counter[candies[i]]--;
             if (counter[candies[i]] == 0) {
-                total--;
+                counter.erase(candies[i]);
             }
             if (i >= k) {
                 int last = candies[i - k];
                 counter[last]++;
-                if (counter[last] == 1) {
-                    total++;
-                }
             }
             if ((i+1) >= k) {
-                answer = max(answer, total);
+                answer = max(answer, (int)counter.size());
             }
         }
         return answer;
