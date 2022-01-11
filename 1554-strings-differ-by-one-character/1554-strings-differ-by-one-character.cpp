@@ -5,12 +5,12 @@ public:
     const int base = 31;
     const int MOD = 1e9 + 7;
     
-    string makeHash(int a, int b) {
-        return to_string(a) + "#" + to_string(b);
+    long long makeHash(int a, int b) {
+        return (a) * 1000000000ll + (b);
     }
     
     bool differByOne(vector<string>& dict) {
-        unordered_set<string> visited;
+        unordered_set<long long> visited;
         int len = dict[0].size();
         vector<int> hash(len + 1, -1);
         for (const auto &word : dict) {
@@ -21,7 +21,7 @@ public:
             }
             sum = 0;
             for (int i = 0; i < len; i++) {
-                string p = makeHash(sum, hash[i + 1]);
+                auto p = makeHash(sum, hash[i + 1]);
                 if (visited.find(p) != visited.end()) {
                     return true;
                 }
