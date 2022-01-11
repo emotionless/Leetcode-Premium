@@ -10,7 +10,7 @@ public:
     }
     
     bool differByOne(vector<string>& dict) {
-        set<string> visited;
+        unordered_set<string> visited;
         int len = dict[0].size();
         vector<int> hash(len + 1, -1);
         for (const auto &word : dict) {
