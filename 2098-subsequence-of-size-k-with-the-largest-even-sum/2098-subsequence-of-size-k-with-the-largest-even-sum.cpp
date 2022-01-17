@@ -3,39 +3,25 @@
 class Solution {
 public:
     long long largestEvenSum(vector<int>& nums, int k) {
+        sort(nums.begin(), nums.end());
         int n = nums.size();
-        vector<long long> even, odd;
-        for (auto x : nums) {
-            if (x&1) odd.push_back(x);
-            else even.push_back(x);
-        }
-        sort(even.begin(), even.end());
-        reverse(even.begin(), even.end());
-        sort(odd.begin(), odd.end());
-        reverse(odd.begin(), odd.end());
-        
-        int eSize = even.size();
-        int oSize = odd.size();
-        
-        for (int i = 1; i < oSize; i++) {
-            odd[i] += odd[i-1];
-        }
-        long long ans = -1, sum = 0;
-        if (k <= oSize && odd[k-1]%2==0) {
-            ans = odd[k-1];
-        }
-        for (int i = 0; i < k && i < eSize; i++) {
-            sum += even[i];
-            int rest = k - i - 1;
-            if (rest == 0) {
-                ans = max(ans, sum);
-                continue;
+        int lastEven = -1, lastOdd = -1;
+        long long sum = 0;
+        for (int i = n - 1; i >= (n - k); i--) {
+            sum += nums[i];
+            if (nums[i]&1) {
+                lastOdd = nums[i];
+            } else {
+                lastEven = nums[i];
             }
-            if (rest <= oSize) {
-                long long total = sum + odd[rest - 1];
-                if (total%2==0) {
-                    ans = max(ans, total);
-                }
+        }
+        if (sum %2 == 0) return sum;
+        long long ans = -1;
+        for (int i = 0; i < n-k; i++) {
+            if (nums[i]%2 == 1 && (lastEven != -1)) {
+                ans = max(ans, sum - lastEven + nums[i]);
+            } else if (nums[i] % 2 == 0 && lastOdd != -1) {
+                ans = max(ans, sum - lastOdd + nums[i]);
             }
         }
         return ans;
