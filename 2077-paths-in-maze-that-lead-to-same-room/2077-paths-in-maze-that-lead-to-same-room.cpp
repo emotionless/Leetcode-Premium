@@ -1,25 +1,24 @@
+// solved by Milon
 class Solution {
 public:
     int numberOfPaths(int n, vector<vector<int>>& corridors) {
-        matrix.resize(n, vector<bool>(n, false));
+        unordered_map<int, set<int>> container;
         for (auto &cor : corridors) {
             if (cor[0] > cor[1]) swap(cor[0], cor[1]);
-            matrix[cor[0] - 1][cor[1] - 1] = true;
-            // matrix[cor[1] - 1][cor[0] - 1] = true;
+            container[cor[0]].insert(cor[1]);
         }
         int cnt = 0;
         for (auto cor : corridors) {
-            int u = cor[0] - 1;
-            int v = cor[1] - 1;
-            for (int k = 0; k < n; k++) {
-                if (matrix[u][k] && matrix[v][k]) {
+            int u = cor[0];
+            int v = cor[1];
+            auto &uSet = container[u];
+            auto &vSet = container[v];
+            for (auto num : uSet) {
+                if (vSet.find(num) != vSet.end()) {
                     cnt++;
                 }
             }
-            //cout << cnt << endl;
         }
         return cnt;
     }
-private:
-    vector<vector<bool>> matrix;
 };
