@@ -2,7 +2,7 @@
 class Solution {
 public:
     int numberOfPaths(int n, vector<vector<int>>& corridors) {
-        unordered_map<int, set<int>> container;
+        unordered_map<int, unordered_set<int>> container;
         for (auto &cor : corridors) {
             if (cor[0] > cor[1]) swap(cor[0], cor[1]);
             container[cor[0]].insert(cor[1]);
