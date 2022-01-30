@@ -4,7 +4,7 @@ class Solution {
 public:
     const int MOD = 1e9 + 7;
     
-    int solve(int ind, const int sum, vector<int> &nums1, vector<int> &nums2) {
+    int solve(int ind, int sum, vector<int> &nums1, vector<int> &nums2) {
         int &ret = dp[ind][sum + 10000];
         if (ret != -1) return ret;
         ret = 0;
