@@ -5,14 +5,14 @@ public:
     const int MOD = 1e9 + 7;
     
     int solve(int ind, int sum, vector<int> &nums1, vector<int> &nums2) {
+        if (ind == nums1.size()) {
+            return sum == 0;
+        }
         int &ret = dp[ind][sum + 10000];
         if (ret != -1) return ret;
         ret = 0;
         if (sum == 0) {
             ret = 1;
-        }
-        if (ind == nums1.size()) {
-            return ret;
         }
         ret = (ret + solve(ind + 1, sum + nums1[ind], nums1, nums2)) % MOD;
         ret = (ret + solve(ind + 1, sum - nums2[ind], nums1, nums2)) % MOD;
