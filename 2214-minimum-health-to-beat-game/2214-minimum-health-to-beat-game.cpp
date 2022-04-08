@@ -3,7 +3,7 @@
 class Solution {
 public:
     
-    bool isPossible(const long long &tar, int armor, const vector<int> &damage) {
+    bool isPossible(long long &tar, int armor, vector<int> &damage) {
         int n = damage.size();
         int mx = 0;
         long long val = tar;
