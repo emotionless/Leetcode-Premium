@@ -2,7 +2,7 @@
 
 class Solution {
 public:
-    vector<string> generatePossibleNextMoves(string currentState) {
+    vector<string> generatePossibleNextMoves(string &currentState) {
         vector<string> ans;
         int len = currentState.size();
         for (int i = 1; i < len; i++) {
