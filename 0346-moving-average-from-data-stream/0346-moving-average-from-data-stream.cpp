@@ -2,23 +2,22 @@
 class MovingAverage {
 public:
     MovingAverage(int size) {
-        dq.clear();
         sum = 0;
         sz = size;
     }
     
     double next(int val) {
         sum += val;
-        dq.push_back(val);
+        dq.push(val);
         if (dq.size() > sz) {
             sum -= dq.front();
-            dq.pop_front();
+            dq.pop();
         }
         return (sum+0.0f)/(double)dq.size();
     }
 private:
     int sz;
-    deque<int> dq;
+    queue<int> dq;
     int sum = 0;
 };
 
